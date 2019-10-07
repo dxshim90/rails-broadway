@@ -3,6 +3,10 @@
 <p> <%= @play.description %> </p>
 
 
-<%= link_to 'Back', root_path %>
-<%= link_to 'Edit', edit_play_path %>
-<%= link_to 'Delete', play_path, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to 'Back', root_path, class: "btn btn-default" %>
+<% if user_signed_in? %>
+    <% if @play.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_play_path, class: "btn btn-info" %>
+        <%= link_to 'Delete', play_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    <%end%>
+<% end%>
